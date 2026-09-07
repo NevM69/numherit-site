@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUMHERIT - Coffre Numérique & Héritage</title>
+    <meta name="description" content="Coffre-fort d'héritage numérique, secret absolu et transmission sécurisée. La solution souveraine pour transmettre votre patrimoine numérique.">
+    <meta name="keywords" content="coffre fort numerique, heritage numerique, transmission patrimoine, testament moral, chiffrement aes 256, dead man switch">
+    <meta name="theme-color" content="#0E1726">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="canonical" href="https://numheritapp.com/">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-obsidian: #0E1726;
+            --bg-darker: #080c14;
+            --text-main: #E2E8F0;
+            --text-muted: #94A3B8;
+            --gold-light: #FBF5B7;
+            --gold-mid: #D4AF37;
+            --gold-dark: #AA771C;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(212, 175, 55, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-obsidian);
+            color: var(--text-main);
+            line-height: 1.6;
+            background-image: radial-gradient(circle at 50% 0%, #1a2536 0%, var(--bg-obsidian) 70%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1, h2, h3, .brand {
+            font-family: 'Cinzel', serif;
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(to right, var(--gold-mid), var(--gold-light), var(--gold-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Navbar */
+        nav {
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 6rem 5% 4rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold-mid), var(--gold-dark));
+            color: var(--bg-darker);
+            border: none;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-primary:hover,
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .eyebrow {
+            display: inline-block;
+            padding: 0.55rem 1rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 2rem;
+        }
+
+        .hero-badges span {
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--text-muted);
+            border-radius: 999px;
+            padding: 0.65rem 1rem;
+            font-size: 0.8rem;
+        }
+
+        .stats {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 5% 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-card strong {
+            display: block;
+            font-size: 2rem;
+            color: var(--gold-light);
+            font-family: 'Cinzel', serif;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-card span {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 5% 0;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            line-height: 1.2;
+        }
+
+        .section-header p {
+            max-width: 600px;
+            color: var(--text-muted);
+        }
+
+        .value-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 2rem;
+            align-items: stretch;
+        }
+
+        .panel {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .check-list {
+            list-style: none;
+            display: grid;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .check-list li {
+            display: flex;
+            gap: 0.8rem;
+            align-items: flex-start;
+            color: var(--text-main);
+        }
+
+        .check-list li::before {
+            content: '✓';
+            color: var(--gold-light);
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-top: -0.1rem;
+        }
+
+        .mini-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(212, 175, 55, 0.18);
+            border-radius: 18px;
+            padding: 1.8rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .mini-card .pill {
+            display: inline-block;
+            align-self: flex-start;
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            padding: 0.45rem 0.75rem;
+            border-radius: 999px;
+            color: var(--gold-light);
+        }
+
+        .mini-card h3 {
+            font-size: 1.5rem;
+            color: var(--gold-light);
+        }
+
+        .mini-card p {
+            color: var(--text-muted);
+        }
+
+        .process {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.25rem;
+            margin-top: 2rem;
+        }
+
+        .process-step {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(212, 175, 55, 0.14);
+            border-radius: 18px;
+            padding: 1.75rem;
+        }
+
+        .step-number {
+            width: 38px;
+            height: 38px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: rgba(212, 175, 55, 0.12);
+            color: var(--gold-light);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .process-step h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+            color: var(--gold-mid);
+        }
+
+        .process-step p {
+            color: var(--text-muted);
+        }
+
+        .cta-panel {
+            max-width: 1100px;
+            margin: 4rem auto 0;
+            padding: 0 5% 5rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.12), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 24px;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-box h3 {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-box p {
+            color: var(--text-muted);
+            max-width: 650px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-darker);
+            padding: 3rem 5%;
+            margin-top: 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold-mid);
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .value-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .hero {
+                padding: 4rem 5% 2rem;
+            }
+            .cta-box {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="brand gold-gradient-text">NUMHERIT</div>
+    </nav>
+
+    <section class="hero">
+        <div class="eyebrow">Souverain • Zero-Knowledge</div>
+        <h1>Votre Héritage Numérique,<br> <span class="gold-gradient-text">Sécurisé à Jamais.</span></h1>
+        <p>Le coffre-fort d'héritage numérique souverain. Répertoriez, chiffrez et transmettez vos actifs, vos documents confidentiels et votre testament moral sous le sceau du secret absolu.</p>
+        <div class="cta-buttons">
+            <a href="mailto:privacy@numheritapp.com?subject=Demande%20d'acc%C3%A8s%20NUMHERIT" class="btn btn-primary">Demander un accès anticipé</a>
+            <a href="/privacy/" class="btn btn-secondary">Consulter la confidentialité</a>
+        </div>
+        <div class="hero-badges">
+            <span>🔐 Chiffrement AES-256</span>
+            <span>🧠 Testament moral</span>
+            <span>⏳ Dead Man's Switch</span>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="stat-card">
+            <strong>0</strong>
+            <span>Connaissance du serveur</span>
+        </div>
+        <div class="stat-card">
+            <strong>100%</strong>
+            <span>Contrôle utilisateur</span>
+        </div>
+        <div class="stat-card">
+            <strong>24/7</strong>
+            <span>Protocoles de veille</span>
+        </div>
+        <div class="stat-card">
+            <strong>RGPD</strong>
+            <span>Conformité européenne</span>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <h2>Le coffre-fort qui protège ce qui compte.</h2>
+            <p>NUMHERIT aide les personnes à organiser leur patrimoine numérique avec une méthode claire, discrète et totalement souveraine.</p>
+        </div>
+
+        <div class="value-grid">
+            <div class="panel">
+                <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Une transmission digne de confiance.</h3>
+                <p style="color: var(--text-muted);">Au lieu de laisser vos informations dispersées, NUMHERIT centralise, sécurise et organise confidentialité, héritage et messages de fin de vie dans un environnement conforme à vos volontés.</p>
+                <ul class="check-list">
+                    <li>Protection de documents, clés crypto, comptes et actes sensibles.</li>
+                    <li>Transmission conditionnelle selon votre rythme, vos bénéficiaires et votre plan de sécurité.</li>
+                    <li>Contrôle total sur les accès et la date de déclenchement du protocole.</li>
+                </ul>
+            </div>
+
+            <div class="mini-card">
+                <span class="pill">Le principe</span>
+                <h3>Votre clé. Votre décision. Votre héritage.</h3>
+                <p>Tout est pensé pour garantir que vos proches ne reçoivent que ce que vous avez explicitement authorised.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <h2>Les piliers de la solution.</h2>
+        </div>
+
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <h3>Architecture Zero-Knowledge</h3>
+                <p>Vos données sont chiffrées de bout en bout (AES-256-GCM) directement sur votre appareil. Zéro conservation de données : vous êtes le seul à détenir la clé maîtresse.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⏳</div>
+                <h3>Dead Man's Switch</h3>
+                <p>Un protocole de veille automatisé. En cas d'inactivité prolongée et vérifiée, vos volontés et actifs sont transmis à vos bénéficiaires désignés via un partage de secret de Shamir.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎙️</div>
+                <h3>Le Gardien de Mémoire</h3>
+                <p>Un dialogue d'essence confidentiel. Échangez par la voix pour exprimer votre parcours et formalisez un testament moral calligraphié certifié, prêt à être scellé pour vos proches.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🪙</div>
+                <h3>Inventaire de Patrimoine</h3>
+                <p>Répertoriez en toute sécurité vos graines (seeds) de portefeuilles crypto, vos contrats d'assurance, mots de passe, actes officiels et messages olographes d'adieu.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <h2>Comment ça fonctionne.</h2>
+        </div>
+
+        <div class="process">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <h3>Créer votre coffre</h3>
+                <p>Organisez vos documents, identités, accès, clés et volontés dans un espace discret et personnel.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <h3>Définir les bénéficiaires</h3>
+                <p>Choisissez les personnes autorisées et les éléments à transmettre selon votre logique de confiance.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <h3>Configurer le protocole</h3>
+                <p>Activez un délai d'inactivité et un mécanisme de vérification de présence pour sécuriser les transmissions.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <h3>Transmettre avec assurance</h3>
+                <p>Quand le moment est venu, le système déclenche la transmission de manière contrôlée, ciblée et sécurisée.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-panel">
+        <div class="cta-box">
+            <div>
+                <h3>Confiez votre patrimoine numérique au bon gardien.</h3>
+                <p>NUMHERIT protège vos données, vos volontés et vos proches avec un standard de sécurité pensé pour l'héritage contemporain.</p>
+            </div>
+            <div class="cta-buttons">
+                <a href="mailto:privacy@numheritapp.com?subject=Contact%20NUMHERIT" class="btn btn-primary">Nous contacter</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="brand gold-gradient-text" style="font-size: 1.2rem;">NUMHERIT</div>
+            <div class="footer-links">
+                <a href="/privacy/">Politique de Confidentialité</a>
+                <a href="/delete-account/">Suppression de compte (RGPD)</a>
+                <a href="mailto:privacy@numheritapp.com">Contacter le DPO</a>
+            </div>
+            <div class="copyright">
+                &copy; 2026 NUMHERIT - Argus Intelligence. Tous droits réservés.<br>
+                Ce service ne se substitue pas aux formalités testamentaires requises par les lois successorales locales.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
